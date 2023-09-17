@@ -33,6 +33,7 @@ public class ChessMacth {
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
 		validateSourcePosition(source);
+		validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
 		return (ChessPiece) capturedPiece;
 	}
@@ -47,6 +48,15 @@ public class ChessMacth {
 	private void validateSourcePosition(Position position) {
 		if (!board.thereIsAPice(position)) {
 			throw new ChessException("Não existe peça nessa posição");
+		}
+		if (!board.piece(position).isThereAnyPossibleMoves()) {
+			throw new ChessException("Não há movimentos possíveis para essa peça");
+		}
+	}
+	
+	private void validateTargetPosition(Position source, Position target) {
+		if(!board.piece(source).possibleMove(target)) {
+			throw new ChessException("Não é possível mover a peça escolhida para a posição desejada");
 		}
 	}
 	
