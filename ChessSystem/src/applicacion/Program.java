@@ -18,8 +18,8 @@ public class Program {
 		ChessMacth chessmatch = new ChessMacth();
 		List<ChessPiece> captured = new ArrayList<>();
 		
-		while(true) {
-			//try {
+		while(!chessmatch.getCheckMate()) {
+			try {
 				UI.clearScreen();
 				UI.printMatch(chessmatch, captured);
 				System.out.println();
@@ -39,7 +39,7 @@ public class Program {
 					captured.add(capturedPiece);
 				}
 				
-			/*} catch(ChessException e) {
+			} catch(ChessException e) {
 				System.out.println(e.getMessage());
 				sc.nextLine();
 				sc.nextLine();
@@ -47,8 +47,10 @@ public class Program {
 				System.out.println(e.getMessage());
 				sc.nextLine();
 				sc.nextLine();
-			}*/
+			}
 		}
+		UI.clearScreen();
+		UI.printMatch(chessmatch, captured);
 	}
 
 }
